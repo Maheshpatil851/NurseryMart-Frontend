@@ -6,6 +6,8 @@ import LayOut from './Views/Layout'
 import Home from './Views/Home'
 import About from './Views/About'
 import Contact from './Views/Contact'
+import Login from "./Views/Login";
+import Register from "./Views/Register";
 
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
       </Route>
     </Routes>
   </BrowserRouter>

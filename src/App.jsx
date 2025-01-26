@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import './App.css'
-
 import LayOut from './Views/Layout'
 import Home from './Views/Home'
 import About from './Views/About'
@@ -11,6 +10,7 @@ import Register from "./Views/Register";
 
 
 function App() {
+  
   return (
     <div>
     <BrowserRouter>

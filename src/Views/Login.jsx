@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, logout } from '../Features/AuthSlice'; 
+import { useNavigate } from 'react-router-dom';
 
 function Login()  {
     const [formData, setFormData] = useState({
@@ -7,6 +10,17 @@ function Login()  {
         password: "",
         userName: "",
       });
+      const dispatch = useDispatch();
+      const navigate = useNavigate();
+    //   const accessToken = useSelector((state) => state.auth.accessToken);
+    //   const loginStatus = useSelector((state) => state.auth.status);
+    //   const error = useSelector((state) => state.auth.error);
+
+    //   const handleLogin = (e) => {
+    //     e.preventDefault();
+    //     const credentials = formData;
+    //     dispatch(loginUser(credentials));
+    //   };
     
       const handleChange = (e) => {
         const { name, value } = e.target; 
@@ -16,9 +30,15 @@ function Login()  {
         }));
       };
 
-      const handleSubmit =(e)=>{
+      const handleSubmit = async (e)=>{
         e.preventDefault(); 
-        console.log(formData);
+        try {
+            const result = await dispatch(loginUser(formData)).unwrap();
+            console.log(result);
+            navigate('/');
+          } catch (error) {
+            console.error('Login failed:', error);
+          }
       }
 
   return (

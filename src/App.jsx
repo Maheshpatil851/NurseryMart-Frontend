@@ -7,6 +7,7 @@ import About from './Views/About'
 import Contact from './Views/Contact'
 import Login from "./Views/Login";
 import Register from "./Views/Register";
+import CreateProduct from "./Views/CreateProduct";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/create-product" element={<CreateProduct />} />
 
       </Route>
     </Routes>

@@ -1,5 +1,6 @@
 import { createSlice ,createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchData } from '../Utils/FetchWrapper'; 
+import { fetchData } from "../Utils/FetchWrapper";
+import { axiosWrapper } from '../Utils/AxiosFetchWrapper';
 
 export const loginUser = createAsyncThunk(
   '/api/1.0/access/Auth/login',
@@ -17,6 +18,22 @@ export const loginUser = createAsyncThunk(
       return newAccessToken;
     } catch (error) {
       return rejectWithValue(error.message || 'Login failed');
+    }
+  }
+);
+
+export const UserRegister = createAsyncThunk(
+  'product/createProduct',  // Action type (name)
+  async (data, { dispatch, rejectWithValue }) => {
+    
+    try {
+      console.log("here in slice",data);
+      const response = await axiosWrapper.post('/api/1.0/access/Auth/create-user', data, true, dispatch);  // Use axiosWrapper for POST request
+      console.log(response);
+      return response.data;  // Return the new product data
+    } catch (error) {
+      console.log("here in error",error);
+      return rejectWithValue(error.message || 'Failed to create product');  // Handle error and reject the thunk
     }
   }
 );
@@ -48,12 +65,24 @@ const initialState = {
         .addCase(loginUser.fulfilled, (state, action) => {
           state.status = 'succeeded';
           state.accessToken = action.payload;
+          console.log("AccessToken" ,state.accessToken)
           state.isLoggedIn = true;
         })
         .addCase(loginUser.rejected, (state, action) => {
           state.status = 'failed';
           state.error = action.payload; 
-        });
+        })
+        .addCase(UserRegister.pending, (state) => {
+          state.status = 'loading'; 
+        })
+        .addCase(UserRegister.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.accessToken = action.payload;
+        })
+        .addCase(UserRegister.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = action.payload; 
+        })
     },
   });
 

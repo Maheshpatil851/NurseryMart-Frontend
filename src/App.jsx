@@ -8,6 +8,7 @@ import Contact from './Views/Contact'
 import Login from "./Views/Login";
 import Register from "./Views/Register";
 import CreateProduct from "./Views/CreateProduct";
+import ProductDashboard from "./Views/ProductDashboard";
 
 
 function App() {
@@ -17,12 +18,13 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<LayOut />}>
-        <Route index element={<Home />} />
+        <Route index path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/create-product" element={<CreateProduct />} />
+        <Route path="/product" element={<ProductDashboard />} />
 
       </Route>
     </Routes>

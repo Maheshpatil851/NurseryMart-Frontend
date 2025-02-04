@@ -41,7 +41,6 @@ function request(method) {
 
       return data;
     } catch (error) {
-      // Handle specific response errors like 401 (Unauthorized)
       if (error.response) {
         if (error.response.status === 401) {
           // Unauthorized: Handle this in the slice or component

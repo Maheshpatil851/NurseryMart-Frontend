@@ -4,9 +4,10 @@ import { setLoading } from '../Features/LoadingSlice';
 import { setAlert } from '../Features/ErrorSlice';
 
 const initialState = {
-  product: [],
-  status: 'idle',  // Track the request status (loading, succeeded, failed)
+  products: [],
+  status: 'idle',  
   error: null,
+  query:''
 }
 
 export const getProducts = createAsyncThunk(
@@ -32,12 +33,12 @@ export const createProduct = createAsyncThunk(
   async (productData, { dispatch, rejectWithValue }) => {
     try {
       dispatch(setLoading(true));
-      const response = await axiosWrapper.post('/api/1.0/Product', productData, true, dispatch);  // Use axiosWrapper for POST request
+      const response = await axiosWrapper.post('/api/1.0/Product', productData, true, dispatch);  
       console.log(response);
-      return response.data;  // Return the new product data
+      return response.data;  
     } catch (error) {
       dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
-      return rejectWithValue(error.message || 'Failed to create product');  // Handle error and reject the thunk
+      return rejectWithValue(error.message || 'Failed to create product');  
     }
     finally{
       dispatch(setLoading(false));
@@ -45,43 +46,79 @@ export const createProduct = createAsyncThunk(
   }
 );
 
+export const SearchProducts = createAsyncThunk('Product/Search' ,async(data,{dispatch , rejectWithValue} ) => {
+  try {
+     dispatch(setLoading(true));
+     if(data == null){
+              data ={
+                query: initialState.query,
+                pagination: {
+                  pageNumber: 0,
+                  pageSize: 0,
+                  skipPagination: true,
+                  sortColumn: "",
+                  sortDesc: true
+                },
+                categoryId: 0
+              };
+     };
+     const response = await axiosWrapper.post('/api/1.0/Product/search' ,data,dispatch);
+     console.log("api product  response",response);
+     return response.data;
+  } catch (error) {
+    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    return rejectWithValue(error.message || 'Failed to create product'); 
+  }
+  finally{
+    dispatch(setLoading(false));
+  }
+})
+
+export const GetCategories = createAsyncThunk('Category/Search' ,async(data,{dispatch , rejectWithValue} ) => {
+  try {
+     dispatch(setLoading(true));
+     const response = await axiosWrapper.post('/api/1.0/Product' ,data,dispatch);
+     console.log("api response",response);
+     return response.data;
+  } catch (error) {
+    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    return rejectWithValue(error.message || 'Failed to create product'); 
+  }
+  finally{
+    dispatch(setLoading(false));
+  }
+})
+
+
 export const ProductSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+    setQuery : (state, action) => {
+      return { ...state, query: action.payload }; 
+    },
    
 
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state) => {
-        state.status = 'loading';  // Set loading state when the GET request is in progress
-      })
+      
       .addCase(getProducts.fulfilled, (state, action) => {
-        state.status = 'succeeded';  // Set succeeded state when the GET request is successful
-        state.products = action.payload;  // Store the fetched products
-      })
-      .addCase(getProducts.rejected, (state, action) => {
-        state.status = 'failed';  // Set failed state if the GET request fails
-        state.error = action.payload;  // Store the error message
-      })
-      .addCase(createProduct.pending, (state) => {
-        state.status = 'loading';  // Set loading state when the POST request is in progress
+        state.status = 'succeeded';  
       })
       .addCase(createProduct.fulfilled, (state, action) => {
-        state.status = 'succeeded';  // Set succeeded state when the POST request is successful
-        state.product?.push(action.payload);  // Add the new product to the list
+        state.status = 'succeeded';  
       })
-      .addCase(createProduct.rejected, (state, action) => {
-        state.status = 'failed';  // Set failed state if the POST request fails
-        state.error = action.payload;  // Store the error message
-      });
+      .addCase(SearchProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';  
+        state.products = action.payload;  
+      })
   },
 
 
 })
 
 // Action creators are generated for each case reducer function
-export const { create, update, remove ,get} = ProductSlice.actions
+export const { setQuery} = ProductSlice.actions
 
 export default ProductSlice.reducer

@@ -1,8 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 function ErrorModal() {
+const { alert ={} ,showAlert } = useSelector((state) => state.error || {});
+// console.log("alert",alert);
+// console.log("showalert",showAlert);
+
   return (
-    <div>
+    <>
+    {
+        showAlert  &&
+        <div>
       <div className="fixed inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden transition flex items-center">
     <div aria-hidden="true" className="fixed inset-0 w-full h-full bg-black/50 cursor-pointer">
     </div>
@@ -28,11 +36,11 @@ function ErrorModal() {
             <div className="space-y-2 p-2">
                 <div className="p-4 space-y-2 text-center dark:text-white">
                     <h2 className="text-xl font-bold tracking-tight" id="page-action.heading">
-                        Delete John Doe
+                        {alert.type}
                     </h2>
 
                     <p className="text-gray-500">
-                        Are you sure you would like to do this?
+                    {alert.message}
                     </p>
                 </div>
             </div>
@@ -63,11 +71,14 @@ function ErrorModal() {
                             </button>
                     </div>
                 </div>
-            </div>
+            </div>      
         </div>
     </div>
 </div>
     </div>
+    }
+    </>
+    
   )
 }
 

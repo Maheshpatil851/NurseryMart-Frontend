@@ -35,7 +35,7 @@ function Login()  {
         try {
             const result = await dispatch(loginUser(formData)).unwrap();
             console.log(result);
-            navigate('/');
+            navigate('/home');
           } catch (error) {
             console.error('Login failed:', error);
           }

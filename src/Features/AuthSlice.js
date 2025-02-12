@@ -38,6 +38,20 @@ export const UserRegister = createAsyncThunk(
   }
 );
 
+export const CreateNewPassword = createAsyncThunk(
+  'forgetPassword',  
+  async (data, { dispatch, rejectWithValue }) => {
+    console.log("data",data)
+    try {
+      const response = await axiosWrapper.post(`/api/1.0/access/Auth/create-new-password`,data, true, dispatch);  // Use axiosWrapper for POST request
+      console.log(response);
+      return response.data; 
+    } catch (error) {
+      return rejectWithValue(error.message || 'Failed to create product'); 
+    }
+  }
+);
+
 const initialState = {
   product: [],
   count: 0,

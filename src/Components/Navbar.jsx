@@ -17,7 +17,7 @@ const handleLogout = async (e) => {
   return (
     <div className="relative">
       {/* Navbar Container */}
-      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-md pt-5 pb-5 fixed top-0 left-0 right-0 z-50">
+      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-md pt-5 pb-5 mb-10 fixed top-0 left-0 right-0 z-50 h-21">
         {/* Logo */}
         <h1 className="text-3xl font-bold hover:text-amber-300">
           <Link to={"/"}>NurseryMart</Link>
@@ -37,11 +37,21 @@ const handleLogout = async (e) => {
         <ul className="hidden lg:flex space-x-6 text-3xl">
   <li>
     <Link
-      to={"/"}
+      to={"/home"}
       className="relative p-2 rounded-lg transition-all duration-300 ease-in-out transform text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-blue-500 hover:scale-105 hover:shadow-xl"
     >
       Home
       <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-green-400 to-blue-500 scale-x-0 transform transition-all duration-300 group-hover:scale-x-100"></span>
+    </Link>
+  </li>
+  
+  <li>
+    <Link
+      to={"/product"}
+      className="relative p-2 rounded-lg transition-all duration-300 ease-in-out transform text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl"
+    >
+      Product
+      <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-indigo-400 to-purple-500 scale-x-0 transform transition-all duration-300 group-hover:scale-x-100"></span>
     </Link>
   </li>
   <li>
@@ -51,15 +61,6 @@ const handleLogout = async (e) => {
     >
       About
       <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-yellow-400 to-red-500 scale-x-0 transform transition-all duration-300 group-hover:scale-x-100"></span>
-    </Link>
-  </li>
-  <li>
-    <Link
-      to={"/create-product"}
-      className="relative p-2 rounded-lg transition-all duration-300 ease-in-out transform text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl"
-    >
-      Product
-      <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-indigo-400 to-purple-500 scale-x-0 transform transition-all duration-300 group-hover:scale-x-100"></span>
     </Link>
   </li>
   <li>
@@ -119,17 +120,17 @@ const handleLogout = async (e) => {
             <Link to={"/about"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">About</Link>
           </li>
           <li>
-            <Link to={"/create-product"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Product</Link>
+            <Link to={"/product"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Product</Link>
           </li>
           <li>
             <Link to={"/contact"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Contact</Link>
           </li>
           {isLoggedIn ? (
-            <li>
+            <li className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300 -mt-2.5">
               <button onClick={handleLogout} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">
                 Logout
               </button>
-            </li>
+            </li >
           ) : (
             <>
               <li>

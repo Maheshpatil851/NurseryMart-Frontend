@@ -112,7 +112,7 @@ function Register() {
   return (
     <div className="relative bg-white dark:bg-gray-900 text-white min-h-screen">
   <div className="bg-gradient-to-r flex items-center justify-center min-h-screen">
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-md w-full">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-xl w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
         Create an Account
       </h2>

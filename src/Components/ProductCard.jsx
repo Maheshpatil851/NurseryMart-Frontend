@@ -4,8 +4,9 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 function ProductCard({ product, showDelCart }) {
   const navigate = useNavigate();
+
   function goToProductDetails(id) {
-    navigate(`/product/${id}`);
+    navigate(`/productpage/${id}`);
   }
 
   return (

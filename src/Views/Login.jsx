@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logout } from '../Features/AuthSlice'; 
 import { useNavigate } from 'react-router-dom';
+import ForgerPasswordModel from '../Components/ForgerPasswordModel';
 
 function Login()  {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function Login()  {
         password: "",
         userName: "",
       });
+      const [isModalOpen ,setIsModalOpen] = useState(false);
       const dispatch = useDispatch();
       const navigate = useNavigate();
     //   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -41,22 +43,26 @@ function Login()  {
           }
       }
 
+      const handleForgotPasswordClick = () => {
+        setIsModalOpen(!isModalOpen);
+      };
+
   return (
     <div className='bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center min-h-screen'>
-        <div className= "bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+        <div className= "bg-white rounded-lg shadow-lg p-8 max-w-xl w-full">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 max-w">
-            Or
+            Or &nbsp;
             <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
                 create an account
             </Link>
         </p>
     </div>
 
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6"  onSubmit={handleSubmit}>
                 <div>
@@ -91,7 +97,7 @@ function Login()  {
                         </label>
                     </div>
 
-                    <div className="text-sm">
+                    <div className="text-sm" onClick={handleForgotPasswordClick}>
                         <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
                             Forgot your password?
                         </a>
@@ -146,6 +152,7 @@ function Login()  {
         </div>
     </div>
         </div>
+        <ForgerPasswordModel   isModalOpen={isModalOpen} handleModel={handleForgotPasswordClick } />
     </div>
   )
 }

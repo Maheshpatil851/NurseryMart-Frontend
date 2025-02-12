@@ -17,7 +17,7 @@ const handleLogout = async (e) => {
   return (
     <div className="relative">
       {/* Navbar Container */}
-      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-md pt-5 pb-5 mb-10 fixed top-0 left-0 right-0 z-50 h-16">
+      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-md pt-5 pb-5 mb-10 fixed top-0 left-0 right-0 z-50 h-21">
         {/* Logo */}
         <h1 className="text-3xl font-bold hover:text-amber-300">
           <Link to={"/"}>NurseryMart</Link>

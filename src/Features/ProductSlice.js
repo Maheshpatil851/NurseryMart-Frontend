@@ -5,6 +5,7 @@ import { setAlert } from '../Features/ErrorSlice';
 
 const initialState = {
   products: [],
+  product : {},
   status: 'idle',  
   error: null,
   query:''
@@ -34,7 +35,6 @@ export const createProduct = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       const response = await axiosWrapper.post('/api/1.0/Product', productData, true, dispatch);  
-      console.log(response);
       return response.data;  
     } catch (error) {
       dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
@@ -63,7 +63,6 @@ export const SearchProducts = createAsyncThunk('Product/Search' ,async(data,{dis
               };
      };
      const response = await axiosWrapper.post('/api/1.0/Product/search' ,data,dispatch);
-     console.log("api product  response",response);
      return response.data;
   } catch (error) {
     dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
@@ -78,7 +77,20 @@ export const GetCategories = createAsyncThunk('Category/Search' ,async(data,{dis
   try {
      dispatch(setLoading(true));
      const response = await axiosWrapper.post('/api/1.0/Product' ,data,dispatch);
-     console.log("api response",response);
+     return response.data;
+  } catch (error) {
+    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    return rejectWithValue(error.message || 'Failed to create product'); 
+  }
+  finally{
+    dispatch(setLoading(false));
+  }
+})
+
+export const GetProductById = createAsyncThunk('Product/GetById' ,async(id,{dispatch , rejectWithValue} ) => {
+  try {
+     dispatch(setLoading(true));
+     const response = await axiosWrapper.get(`/api/1.0/Product/get-by/${id}`,dispatch);
      return response.data;
   } catch (error) {
     dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
@@ -112,6 +124,10 @@ export const ProductSlice = createSlice({
       .addCase(SearchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';  
         state.products = action.payload;  
+      })
+      .addCase(GetProductById.fulfilled, (state, action) => {
+        state.status = 'succeeded';  
+        state.product = action.payload[0];  
       })
   },
 

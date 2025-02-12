@@ -9,6 +9,7 @@ import Login from "./Views/Login";
 import Register from "./Views/Register";
 import CreateProduct from "./Views/CreateProduct";
 import ProductDashboard from "./Views/ProductDashboard";
+import ProductPage from "./Views/ProductPage";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/create-product" element={<CreateProduct />} />
         <Route path="/product" element={<ProductDashboard />} />
-
+        <Route path="/productpage/:id" element={<ProductPage />} />
       </Route>
     </Routes>
   </BrowserRouter>

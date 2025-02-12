@@ -9,17 +9,19 @@ import ErrorModal from "../Components/ErrorModal";
 function Layout() {
   const { isLoading } = useSelector((state) => state.loading);
   return (
-    <div className="relative bg-white dark:bg-gray-900 text-white min-h-screen ">
-      <div className={`transition-all ${isLoading ? 'blur-sm pointer-events-none' : ''}`}>
-        <ErrorModal/>
-        <Navbar />
-        <Outlet />
-        <Footer/>
-      </div>
-      {isLoading && (
-        <Loading/>
-      )}
+    <div className="relative bg-white dark:bg-gray-900 text-white min-h-screen">
+    <div className={`transition-all ${isLoading ? 'blur-sm pointer-events-none' : ''}`}>
+      <ErrorModal />
+      <Navbar />
+      <div><Outlet /></div>
+      <Footer />
     </div>
+  
+    {isLoading && (
+     <Loading/>
+    )}
+  </div>
+  
   )
 }
 

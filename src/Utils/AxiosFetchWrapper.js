@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "https://localhost:44313",  // Set your base API URL
-  timeout: 70000,  // Timeout for requests (optional)
+  baseURL: "https://localhost:44313",  
+  timeout: 70000,  
   headers: {
-    'Content-Type': 'application/json',  // Default header for JSON
+    'Content-Type': 'application/json',  
   },
 });
 
@@ -68,7 +68,7 @@ function request(method) {
 
 function authHeader(url, body) {
   const accessToken = localStorage.getItem('accessToken'); 
-  console.log("accessToken in axios",accessToken)  // Get the access token from local storage
+  console.log("accessToken in axios",accessToken)  
   const isLoggedIn = !!accessToken;
   const isApiUrl = url.startsWith("https://localhost:44313"); // Replace with your actual API URL
   console.log("isloggedin",isLoggedIn ,isApiUrl)

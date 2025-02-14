@@ -5,10 +5,9 @@ import ProductList from '../Components/ProductList'
 
 function ProductDashboard() {
   return (
-    <div className='min-h-full'>
+    <div >
            <ProductSectionHeader showSearchBar={true} showFilter={true} showCategoriesPills={true}  />
             <ProductList />
-      
     </div>
   )
 }

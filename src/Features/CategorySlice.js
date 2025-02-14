@@ -6,7 +6,7 @@ import { setAlert } from '../Features/ErrorSlice';
 const initialState ={
     status : null,
     categories : [],
-    selectedCategory:null,
+    selectedCategory:'',
     query : '',
 }
 

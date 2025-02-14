@@ -6,16 +6,19 @@ const initialState = {
 }
 
 export const CartSlice = createSlice({
-  name: 'counter',
+  name: 'cart',
   initialState,
   reducers: {
     Increment: (state ,actions) => {
-      state.product.Add(actions.payload);
+      state.product.push(actions.payload);
       state.count = state.count + 1;
     },
     Decrement: (state ,actions) => {
-      state.product.remove(actions.payload);
-      state.count = state.count-1;
+      const index = state.items.findIndex(item => item.id === actions.payload.id);
+      if (index !== -1) {
+        state.product.splice(index, 1);
+        state.count = state.count - 1;
+      }
     },
     Clear: (state) => {
         state.product =[];

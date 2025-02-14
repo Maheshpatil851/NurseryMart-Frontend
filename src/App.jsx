@@ -10,7 +10,8 @@ import Register from "./Views/Register";
 import CreateProduct from "./Views/CreateProduct";
 import ProductDashboard from "./Views/ProductDashboard";
 import ProductPage from "./Views/ProductPage";
-
+import OrderPage from "./Views/OrdersPage";
+import Cart from "./Views/Cart";
 
 function App() {
   
@@ -25,8 +26,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/create-product" element={<CreateProduct />} />
-        <Route path="/product" element={<ProductDashboard />} />
+        <Route path="/product" element={<ProductDashboard />} />  
         <Route path="/productpage/:id" element={<ProductPage />} />
+        <Route path="/orders" element={<OrderPage />} />
+        <Route path="/cart" element={<Cart />} />
+
       </Route>
     </Routes>
   </BrowserRouter>

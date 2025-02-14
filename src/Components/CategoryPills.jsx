@@ -33,26 +33,36 @@ function CategoriesPills() {
     }
 
     return (
-        <div className="flex justify-center overflow-x-auto space-x-4 pt-4 w-full ml-18 mr-18">
+        <div className="flex justify-center overflow-x-auto   space-x-4 pt-10 w-full mx-4 sm:mx-8 scrollbar-hide">
+  <span
+    onClick={() => handleSelectCategory(null)}
+    id="unic"
+    key="unic"
+    className={`cursor-pointer inline-block px-6 py-2 text-sm font-medium rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 ${
+      selectedCategory === ''
+        ? 'bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white'
+        : 'bg-zinc-100 text-black'
+    }`}
+  >
+    All
+  </span>
+  {categories.map(category => (
     <span
-        onClick={() => handleSelectCategory(null)}
-        id="unic"
-        key="unic"
-        className={`cursor-pointer inline-block px-6 py-2 text-sm font-medium rounded-full ${selectedCategory === '' ? 'bg-black text-white' : 'bg-zinc-100 text-black'}`}
+      onClick={() => handleSelectCategory(category?.categoryId)}
+      id={category?.categoryId}
+      key={category?.categoryId}
+      className={`cursor-pointer inline-block px-6 py-2 text-base font-medium md:text-sm md:px-4 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 ${
+        selectedCategory === category?.categoryId
+          ? 'bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white'
+          : 'bg-zinc-100 text-black hover:bg-zinc-200'
+      }`}
     >
-        All
+      {category?.name}
     </span>
-    {categories.map(category => (
-        <span
-            onClick={() => handleSelectCategory(category?.categoryId)}
-            id={category?.categoryId}
-            key={category?.categoryId}
-            className={`cursor-pointer inline-block px-6 py-2 text-base font-medium md:text-sm md:px-4 rounded-full ${selectedCategory === category?.categoryId ? 'bg-black text-white' : 'bg-zinc-100 text-black'}`}
-        >
-            {category?.name}
-        </span>
-    ))}
+  ))}
 </div>
+
+      
 
     
     )

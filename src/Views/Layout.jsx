@@ -4,7 +4,7 @@ import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import { useSelector } from 'react-redux';
 import Loading from '../Components/Loading';
-import ErrorModal from "../Components/ErrorModal";
+import AlertModal from "../Components/AlertModal";
 import CartStatus from "../Components/CartStatus";
 
 function Layout() {
@@ -12,7 +12,7 @@ function Layout() {
   return (
     <div className="relative bg-white dark:bg-gray-900 text-white min-h-screen  pt-16">
     <div className={`transition-all ${isLoading ? 'blur-sm pointer-events-none' : ''}`}>
-      <ErrorModal />
+      <AlertModal />
       <CartStatus /> 
       <Navbar />
       <div  className="min-h-screen"><Outlet /></div>

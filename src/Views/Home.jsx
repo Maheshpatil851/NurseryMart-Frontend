@@ -77,9 +77,14 @@ export default function Home() {
       <section className="bg-green-500 py-16 text-center text-white">
         <h2 className="text-3xl font-semibold mb-4">Get Started with Your Gardening Journey</h2>
         <p className="text-xl mb-6">Join NurseryMart today to access a wide range of plants and gardening tools to help you grow your dream garden.</p>
-        <Link to={"/product"} className="px-8 py-3 bg-blue-500 text-white font-semibold text-lg rounded-lg shadow-lg transition-transform transform hover:scale-110 hover:bg-blue-600 duration-300">
-          Start Shopping
-        </Link>
+        <Link 
+  to="/product" 
+  className="px-8 py-3 bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-semibold text-lg rounded-lg shadow-lg transition-all transform hover:scale-110 hover:bg-gradient-to-r hover:from-pink-600 hover:to-indigo-700 hover:shadow-2xl duration-300"
+>
+  Start Shopping
+</Link>
+
+
       </section>
 
      

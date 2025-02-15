@@ -1,6 +1,7 @@
 import { createSlice ,createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchData } from "../Utils/FetchWrapper";
 import { axiosWrapper } from '../Utils/AxiosFetchWrapper';
+import { setAlert } from '../Features/AlertSlice';
 
 export const loginUser = createAsyncThunk(
   '/api/1.0/access/Auth/login',
@@ -10,10 +11,7 @@ export const loginUser = createAsyncThunk(
         method: 'POST',
         body: credentials, 
       });
-      console.log(response);
       const newAccessToken  = response.data[0].accesstoken;
-      console.log(response.data[0].accesstoken);
-      console.log(newAccessToken);
       localStorage.setItem('accessToken', response.data[0].accesstoken);
       return newAccessToken;
     } catch (error) {
@@ -29,25 +27,29 @@ export const UserRegister = createAsyncThunk(
     try {
       console.log("here in slice",data);
       const response = await axiosWrapper.post('/api/1.0/access/Auth/create-user', data, true, dispatch);  // Use axiosWrapper for POST request
-      console.log(response);
       return response.data;  // Return the new product data
     } catch (error) {
-      console.log("here in error",error);
-      return rejectWithValue(error.message || 'Failed to create product');  // Handle error and reject the thunk
+      await dispatch(setAlert({message : error.message ,type:'error'}))
+    }
+    finally{
+      await dispatch(setAlert({message : "User Created Successfully" ,type:'success'}))
     }
   }
 );
 
 export const CreateNewPassword = createAsyncThunk(
   'forgetPassword',  
-  async (data, { dispatch, rejectWithValue }) => {
+  async (data, { dispatch }) => {
     console.log("data",data)
     try {
       const response = await axiosWrapper.post(`/api/1.0/access/Auth/create-new-password`,data, true, dispatch);  // Use axiosWrapper for POST request
       console.log(response);
       return response.data; 
     } catch (error) {
-      return rejectWithValue(error.message || 'Failed to create product'); 
+      await dispatch(setAlert({message : error.message ,type:'error'}))
+    }
+    finally{
+      await dispatch(setAlert({message : "New Password Created Successfully" ,type:'success'}))
     }
   }
 );

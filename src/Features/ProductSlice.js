@@ -1,7 +1,7 @@
 import { createSlice ,createAsyncThunk } from '@reduxjs/toolkit'
 import { axiosWrapper } from '../Utils/AxiosFetchWrapper';
 import { setLoading } from '../Features/LoadingSlice';  
-import { setAlert } from '../Features/ErrorSlice';
+import { setAlert } from '../Features/AlertSlice';
 
 const initialState = {
   products: [],
@@ -19,7 +19,7 @@ export const getProducts = createAsyncThunk(
       const response = await axiosWrapper.get('/api/1.0/Product', null, true, dispatch);  // Use axiosWrapper for GET request
       return response.data;  // Return the data to be used in the reducer
     } catch (error) {
-      dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+      dispatch(setAlert({message : error.message || 'Failed to fetch products',type : 'error'})); 
       return rejectWithValue(error.message || 'Failed to fetch products');  // Handle error and reject the thunk
     }
     finally{
@@ -37,7 +37,7 @@ export const createProduct = createAsyncThunk(
       const response = await axiosWrapper.post('/api/1.0/Product', productData, true, dispatch);  
       return response.data;  
     } catch (error) {
-      dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+      dispatch(setAlert({message :error.message || 'Failed to fetch products',type :error})); 
       return rejectWithValue(error.message || 'Failed to create product');  
     }
     finally{
@@ -65,7 +65,7 @@ export const SearchProducts = createAsyncThunk('Product/Search' ,async(data,{dis
      const response = await axiosWrapper.post('/api/1.0/Product/search' ,data,dispatch);
      return response.data;
   } catch (error) {
-    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    dispatch(setAlert({ message :error.message || 'Failed to fetch products',type:'error'})); 
     return rejectWithValue(error.message || 'Failed to create product'); 
   }
   finally{
@@ -79,7 +79,7 @@ export const GetCategories = createAsyncThunk('Category/Search' ,async(data,{dis
      const response = await axiosWrapper.post('/api/1.0/Product' ,data,dispatch);
      return response.data;
   } catch (error) {
-    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    dispatch(setAlert({message: error.message || 'Failed to fetch products',type: error})); 
     return rejectWithValue(error.message || 'Failed to create product'); 
   }
   finally{
@@ -93,7 +93,7 @@ export const GetProductById = createAsyncThunk('Product/GetById' ,async(id,{disp
      const response = await axiosWrapper.get(`/api/1.0/Product/get-by/${id}`,dispatch);
      return response.data;
   } catch (error) {
-    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    dispatch(setAlert({ message : error.message || 'Failed to fetch products',type : error})); 
     return rejectWithValue(error.message || 'Failed to create product'); 
   }
   finally{

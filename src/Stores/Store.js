@@ -4,7 +4,8 @@ import CartSliceReducer from '../Features/CartSlice';
 import AuthSliceReducer from '../Features/AuthSlice';
 import LoadingReducer from '../Features/LoadingSlice'; 
 import Categoryreducer from '../Features/CategorySlice';       
-import AlertReducer from '../Features/ErrorSlice'; 
+import AlertReducer from '../Features/AlertSlice'; 
+import OrderReducer from '../Features/OrderSlice'; 
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     auth: AuthSliceReducer, 
     loading: LoadingReducer,
     category : Categoryreducer,
-    Alert : AlertReducer,       
+    alert : AlertReducer, 
+    order :  OrderReducer,
   },
 })

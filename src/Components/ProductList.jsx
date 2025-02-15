@@ -5,6 +5,7 @@ import { SearchProducts } from '../Features/ProductSlice';
 
 function ProductList() {
     const{ products } = useSelector(state => state.product);
+    console.log(products)
     var dispatch = useDispatch();
     useEffect(() => {
         console.log('Component mounted or dispatch changed.');

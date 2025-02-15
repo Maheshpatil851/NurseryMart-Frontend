@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import './App.css'
+import './App.css'
 import LayOut from './Views/Layout'
 import Home from './Views/Home'
 import About from './Views/About'
@@ -12,6 +12,10 @@ import ProductDashboard from "./Views/ProductDashboard";
 import ProductPage from "./Views/ProductPage";
 import OrderPage from "./Views/OrdersPage";
 import Cart from "./Views/Cart";
+import PurchaseOrder from "./Views/PurchaseProductPage";
+import PurchaseForm from "./Components/PurchaseForm";
+
+
 
 function App() {
   
@@ -30,6 +34,8 @@ function App() {
         <Route path="/productpage/:id" element={<ProductPage />} />
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/purchase-order/:id" element={<PurchaseOrder />} />
+        <Route path="/form" element={<PurchaseForm />} />
 
       </Route>
     </Routes>

@@ -1,7 +1,7 @@
 import { createSlice ,createAsyncThunk, isFulfilled } from "@reduxjs/toolkit";
 import { axiosWrapper } from '../Utils/AxiosFetchWrapper';
 import { setLoading } from '../Features/LoadingSlice';  
-import { setAlert } from '../Features/ErrorSlice';
+import { setAlert } from '../Features/AlertSlice';
 
 const initialState ={
     status : null,
@@ -26,7 +26,7 @@ export const GetCategories = createAsyncThunk('Category/Search' ,async(data,{dis
      console.log("api response",response);
      return response.data;
   } catch (error) {
-    dispatch(setAlert(error.message || 'Failed to fetch products',error)); 
+    dispatch(setAlert({message:error.message || 'Failed to fetch products',type:'error'})); 
     return rejectWithValue(error.message || 'Failed to create product'); 
   }
   finally{

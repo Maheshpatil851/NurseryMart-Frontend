@@ -129,7 +129,7 @@ const handleLogout = async (e) => {
     </li>
     <li className="flex items-center">
       <FaShoppingCart className="mr-1 text-amber-300" />
-      <Link to={"/shop"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Shop</Link>
+      <Link to={"/product"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Shop</Link>
     </li>
     <li className="flex items-center">
       <FaPhoneAlt className="mr-1 text-amber-300" />

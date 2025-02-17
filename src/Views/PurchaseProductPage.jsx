@@ -4,14 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import ProductFeatures from "../Components/ProductFeatures";
 import { CreateOrder } from '../Features/OrderSlice';
 import PurchaseForm from '../Components/PurchaseForm'; 
+import {GetProductById} from '../Features/ProductSlice'
 
 function OrderPage() {
-  const { productId } = useParams();
-  const { product } = useSelector((state) => state.cart);
-  const item = product.find((p) => p.id === productId);
+  const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const { product } = useSelector((state) => state.product);
 
+ useEffect(() => {
+    async function fetchdata (){
+      if (id) {
+        await dispatch(GetProductById(id));
+      }
+    }
+    fetchdata();
+ },[id])
+
+  var item = product;
   const handlePlaceOrder = async (data) => {
     console.log("Order Data:", data);
     data.quantity = quantity;
@@ -121,7 +131,7 @@ function OrderPage() {
           />
         </div>
       ) : (
-        <div className="text-center text-xl font-semibold">
+        <div className="text-center text-xl font-semibold min-h-screen">
           Product not found
         </div>
       )}

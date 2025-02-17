@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import Loading from '../Components/Loading';
 import AlertModal from "../Components/AlertModal";
 import CartStatus from "../Components/CartStatus";
+import WhatsApp from "../Components/Whatsapp";
+
 
 function Layout() {
   const { isLoading } = useSelector((state) => state.loading);
@@ -22,6 +24,8 @@ function Layout() {
     {isLoading && (
      <Loading/>
     )}
+   <WhatsApp/>
+    
   </div>
   
   )

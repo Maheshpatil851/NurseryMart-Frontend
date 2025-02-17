@@ -2,9 +2,11 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import AddToCartBtn from "./AddToCartButton";
+import { useSelector } from "react-redux";
 
 function ProductCard({ product, showDelCart }) {
   const navigate = useNavigate();
+  // var {product} = useSelector(state =>state.cart);
 
   function goToProductDetails(id) {
     navigate(`/productpage/${id}`);
@@ -12,10 +14,10 @@ function ProductCard({ product, showDelCart }) {
 
   return (
     <article
-      onClick={() => goToProductDetails(product?.productId)}
+     
       className="group border-2 border-gray-300 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:border-gray-400 p-4 relative pb-12"
     >
-      <div className="relative w-full h-64">
+      <div className="relative w-full h-64"  onClick={() => goToProductDetails(product?.productId)}>
         <img
           src={product?.imageUrl}
           alt={product?.name}
@@ -24,7 +26,7 @@ function ProductCard({ product, showDelCart }) {
       </div>
       <h2 className="mt-4 text-lg font-semibold text-gray-700 truncate transition duration-300 ease-in-out">
         {product?.name}
-      </h2>
+      </h2> 
       <p className="mt-1  text-lg font-medium text-gray-900">
         <span>
           {new Intl.NumberFormat("en-IN", {
@@ -56,7 +58,7 @@ function ProductCard({ product, showDelCart }) {
       <div className="flex items-center justify-between text-right fixed bottom-2 left-2 right-2 z-10">
           <AddToCartBtn
             product={product}
-            type={showDelCart ? "delete" : "add"}
+            type={"add"}
             name={"Add to cart"}
           />
             <Link 

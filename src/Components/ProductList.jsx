@@ -5,16 +5,13 @@ import { SearchProducts } from '../Features/ProductSlice';
 
 function ProductList() {
     const{ products } = useSelector(state => state.product);
-    console.log(products)
     var dispatch = useDispatch();
     useEffect(() => {
-        console.log('Component mounted or dispatch changed.');
         fetchData();
     }, [dispatch]);
 
     const fetchData = async () => {
         try {
-            console.log("fetchdata called")
             await dispatch(SearchProducts(null));
         } catch (error) {
             console.error("Error fetching products:", error);

@@ -21,7 +21,7 @@ const handleLogout = async (e) => {
     <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-md pt-5 pb-5 mb-10 fixed top-0 left-0 right-0 z-50 h-17">
       <h1 className="text-3xl font-bold flex items-center space-x-2 hover:text-amber-300 text-gradient">
         <GiFarmer size={30} />
-        <Link to={"/"} className="text-white hover:text-white">NurseryMart</Link>
+        <Link to={"/home"} className="text-white hover:text-white">NurseryMart</Link>
       </h1>
   
       <button

@@ -42,7 +42,7 @@ function SearchBar() {
       <input
           onChange={handleSearch}
           type="text"
-          className="border-2 border-green-200 rounded-full px-6 py-3 w-full text-black focus:outline-none focus:ring-2 focus:ring-green-400 hover:border-green-600 transition-all duration-300 ease-in-out"
+          className="border-2 border-gray-500 rounded-full px-6 py-3 w-full text-black focus:outline-none focus:ring-2 focus:ring-green-400 hover:border-green-600 transition-all duration-300 ease-in-out"
           placeholder="Search for plants, products, etc..."
         />
 

@@ -35,7 +35,6 @@ function request(method) {
     }
 
     try {
-      console.log("here in axios", url);
       const response = await axiosInstance(url, requestOptions);
       const data = response.data;
 
@@ -68,14 +67,11 @@ function request(method) {
 
 function authHeader(url, body) {
   const accessToken = localStorage.getItem('accessToken'); 
-  console.log("accessToken in axios",accessToken)  
   const isLoggedIn = !!accessToken;
   const isApiUrl = url.startsWith("https://localhost:44313"); // Replace with your actual API URL
-  console.log("isloggedin",isLoggedIn ,isApiUrl)
 
   if (isLoggedIn ) {
-    console.log("inside authheader")
-    // If authenticated, set Authorization header with the token
+    // If authenticated, set Authorization header with the token    
     return {
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': body instanceof FormData ? 'multipart/form-data' : 'application/json',

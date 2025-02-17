@@ -12,10 +12,11 @@ function ProductSectionHeader({ showSearchBar, showFilter, showCategoriesPills }
                 <div className='flex flex-col sm:flex-row justify-between items-center gap-2 '>
                     <br/>
                     {showSearchBar && <ProductSearchBar />}
-                    <br/>
-                    <div className="text-right">
+                    <div className="text-right ">
                     <AddToCartBtn type={"cart"} name={"Go to cart"} />
                 </div>
+                <br/>
+
                 </div>
             </div>
         </>

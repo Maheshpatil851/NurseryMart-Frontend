@@ -15,7 +15,7 @@ function ProductCard({ product, showDelCart }) {
   return (
     <article
      
-      className="group border-2 border-gray-300 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:border-gray-400 p-4 relative pb-12"
+      className="group border-2 bg-white border-gray-300 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:border-gray-400 p-4 relative pb-12"
     >
       <div className="relative w-full h-64"  onClick={() => goToProductDetails(product?.productId)}>
         <img

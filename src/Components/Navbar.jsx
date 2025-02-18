@@ -125,7 +125,7 @@ const handleLogout = async (e) => {
   <ul>
     <li className="flex items-center">
       <FaHome className="mr-1 text-amber-300" />
-      <Link to={"/"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Home</Link>
+      <Link to={"/home"} className="block hover:bg-amber-300 p-2 rounded-lg transition duration-300">Home</Link>
     </li>
     <li className="flex items-center">
       <FaShoppingCart className="mr-1 text-amber-300" />
